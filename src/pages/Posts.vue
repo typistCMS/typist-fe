@@ -1,7 +1,7 @@
 <template>
   <div id="posts">
     <nav>
-      <select class="filter">
+      <select class="filter" v-model="categoryId">
         <option selected>All categories</option>
         <option value="1">World</option>
         <option value="2">World2</option>
@@ -157,12 +157,17 @@ export default {
   data () {
     return {
       page: 1,
-      posts: []
+      posts: [],
+      categoryId: null
     }
   },
   computed: {
     postActive () {
       return this.$route.name === 'Post'
+    }
+  },
+  watch: {
+    categoryId: function (oldVal, newVal) {
     }
   },
   methods: {
