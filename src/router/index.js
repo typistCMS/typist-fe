@@ -8,6 +8,7 @@ import Revisions from '@/pages/Revisions'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     { path: '/', redirect: '/p' },
     {
