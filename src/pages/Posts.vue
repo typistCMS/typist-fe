@@ -1,27 +1,34 @@
 <template>
-  <div id="posts">
-    <nav>
-      <select class="filter" v-model="categoryId">
-        <option selected>All categories</option>
-        <option value="1">World</option>
-        <option value="2">World2</option>
+    <div id="posts">
+      <nav v-bind:class="{ 'expand-list': expandList }">
+      <select class="filter" v-model="categoryId" @change="changeCategory">
+        <option value="" selected>All categories</option>
+        <option :value="category.id" v-for="category in categories" :key="category.id">{{ category.name }}</option>
+        <option value="0">Uncategorized</option>
       </select>
     </nav>
-    <aside>
-      <section v-for="post in posts" class="post" :key="post.id">
-        <header>
-          <router-link tag="h2" :to="`/p/post/${post.id}`">{{ post.title }}</router-link>
+    <aside @click="expandList = !expandList" v-bind:class="{ 'expand-list': expandList }">
+      <section v-for="post in posts" class="post" v-bind:key="post.id">
+        <router-link tag="section" :to="'/p/post/' + post.id" class="expand_content" v-if="post.expand_content">
           <p class="post-meta">
-            Last edit by:&nbsp;<router-link :to="/user/">{{ post.last_edit_by }}</router-link><br>
+            {{ post.updated_at }}
+            {{ post.last_edit_by }}
+          </p>
+          <vue-markdown v-if="post.expand_content" :source="post.content"></vue-markdown>
+        </router-link>
+        <header v-else>
+          <router-link tag="h2" :to="'/p/post/' + post.id">{{ post.title }}</router-link>
+          <p class="post-meta">
+            Last edit by:&nbsp;<router-link to="/user/">{{ post.last_edit_by }}</router-link><br>
             under&nbsp;
             <span class="category"> {{ post.category_name }} </span>
           </p>
         </header>
       </section>
-      <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+      <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading"></infinite-loading>
     </aside>
     <main v-bind:class=" { 'post-active': postActive } ">
-      <button class="btn-close"  @click="closePost()">Click to return</button>
+      <button class="btn-close" @click="closePost()">Click to return</button>
       <router-view />
     </main>
   </div>
@@ -124,6 +131,12 @@ aside {
   .btn-close {
     display: none;
   }
+
+  .expand-list {
+    width: 40vw;
+    box-sizing: border;
+  }
+
 }
 
   .post {
@@ -152,13 +165,16 @@ aside {
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
+import VueMarkdown from 'vue-markdown'
 export default {
-  components: { InfiniteLoading },
+  components: { InfiniteLoading, VueMarkdown },
   data () {
     return {
       page: 1,
       posts: [],
-      categoryId: null
+      categoryId: '',
+      expandList: true,
+      categories: []
     }
   },
   computed: {
@@ -170,9 +186,16 @@ export default {
     categoryId: function (oldVal, newVal) {
     }
   },
+  created () {
+    this.getCategories()
+  },
   methods: {
     infiniteHandler ($state) {
-      this.$http.get('/posts/' + this.page).then(({data}) => {
+      let url = '/posts/' + this.page
+      if (this.categoryId) {
+        url += '/filter/category/' + this.categoryId
+      }
+      this.$http.get(url).then(({data}) => {
         if (data.posts.length) {
           this.posts = this.posts.concat(data.posts)
           ++this.page
@@ -180,10 +203,26 @@ export default {
         } else {
           $state.complete()
         }
+      }).catch(({response}) => {
+        if (response.data.code === 404) {
+          $state.complete()
+        }
       })
     },
     closePost () {
-      this.$router.go(-1)
+      this.$router.push('/')
+    },
+    changeCategory () {
+      this.posts = []
+      this.page = 1
+      this.$nextTick(() => {
+        this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+      })
+    },
+    getCategories () {
+      this.$http.get('/categories').then(({data}) => {
+        this.categories = data
+      })
     }
   }
 }
