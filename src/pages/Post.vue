@@ -81,12 +81,17 @@ article {
 .post-toolbar {
   background: #f3eaf9;
   color: #b57edc;
-  padding: 5px 1em;
+  padding: 5px 0.5em;
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
 }
 
+@media screen and (max-width: 768px) {
+  .post-meta {
+      font-size: 12px;
+  }
+}
 .post-meta {
   display: flex;
   align-items: center;
@@ -103,8 +108,8 @@ article {
     background-color: #c194e2; /* Green background */
     border: 1px solid #b57edc; /* Green border */
     color: white; /* White text */
-    padding: 4px 4px; /* Some padding */
-    height: 32px;
+    padding: 2px 2px; /* Some padding */
+    height: 28px;
     cursor: pointer; /* Pointer/hand icon */
     float: left; /* Float the buttons side by side */
     outline: none;
