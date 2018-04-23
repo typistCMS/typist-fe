@@ -9,8 +9,8 @@
     <ul class="comment-list">
       <li v-for="comment in comments" v-bind:key="comment.id" class="comment">
         <p class="comment-meta">
-          <i class="material-icons">location_on</i>
-          {{ comment.location }} at {{ comment.created_at }}
+          <span><i class="material-icons">location_on</i> {{ comment.location }}</span>
+          <span><i class="material-icons">access_time</i> {{ comment.created_at | localTime }}</span>
         </p>
         {{ comment.content }}
       </li>
@@ -58,9 +58,8 @@ export default {
 <style>
   .comment {
     list-style: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 5px;
-    background-color: #ddd;
+    background-color: rgba(240, 240, 240, 0.6);
     padding: 5px;
     margin-top: 5px;
   }
@@ -69,6 +68,8 @@ export default {
     font-size: 12px;
     margin-bottom: 2px !important;
     border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
   }
 
   .comment-meta .material-icons {
@@ -107,7 +108,7 @@ export default {
   .comment-toggle {
     bottom: 1em;
     right: 1em;
-    position: absolute;
+    position: fixed;
     background: none;
     color: #b57edc;
     outline: #b57edc;
@@ -125,7 +126,7 @@ export default {
     padding: 0.5em;
     box-sizing: border-box;
     z-index: 4;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
   }
 
   .comment-show {

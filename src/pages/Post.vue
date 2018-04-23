@@ -7,7 +7,7 @@
 
       <header>
         <h1>{{ post.title }}</h1>
-        <p class="post-meta">Last edit by:&nbsp;{{ post.last_edit_by }} at {{ post.updated_at }}, under {{ post.category_name }}</p>
+        <p class="post-meta">Last edit by&nbsp;{{ post.last_edit_by }} {{ post.updated_at | localTime }}, under {{ post.category_name }}</p>
       </header>
 
       <section>

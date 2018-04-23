@@ -11,8 +11,8 @@
       <section v-for="post in posts" class="post" v-bind:key="post.id">
         <router-link tag="section" :to="'/p/post/' + post.id" class="expand_content" v-if="post.expand_content">
           <p class="post-meta">
-            {{ post.updated_at }}
-            {{ post.last_edit_by }}
+            {{ post.last_edit_by }} - 
+            {{ post.updated_at | localTime }}
           </p>
           <vue-markdown v-if="post.expand_content" :source="post.content"></vue-markdown>
         </router-link>
