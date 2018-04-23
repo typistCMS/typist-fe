@@ -7,7 +7,17 @@
 
       <header>
         <h1>{{ post.title }}</h1>
-        <p class="post-meta">Last edit by&nbsp;{{ post.last_edit_by }} {{ post.updated_at | localTime }}, under {{ post.category_name }}</p>
+        <div class="post-toolbar">
+          <p class="post-meta">
+            <i class="material-icons">account_circle</i>{{ post.last_edit_by }}
+            <i class="material-icons">access_time</i>{{ post.updated_at | localTime }}
+            <i class="material-icons">label</i>{{ post.category_name }}
+          </p>
+          <div class="btn-group">
+            <router-link tag="button" to="revisions" append><i class="material-icons">archive</i></router-link>
+            <button><i class="material-icons" @click="toggleComments">chat_bubble</i></button>
+          </div>
+        </div>
       </header>
 
       <section>
@@ -35,6 +45,7 @@ export default {
   },
   beforeRouteUpdate (to, from, next) {
     this.getPost(to.params.id)
+    console.log('Post route update')
     next()
   },
   created () {
@@ -65,6 +76,63 @@ export default {
 <style scoped>
 article {
   padding: 0 1em;
+}
+
+.post-toolbar {
+  background: #f3eaf9;
+  color: #b57edc;
+  padding: 5px 1em;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.post-meta .material-icons {
+  font-size: 1em;
+  vertical-align: -2px;
+  padding: 0 5px;
+}
+
+.btn-group button {
+    background-color: #c194e2; /* Green background */
+    border: 1px solid #b57edc; /* Green border */
+    color: white; /* White text */
+    padding: 4px 4px; /* Some padding */
+    height: 32px;
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+    outline: none;
+}
+
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+.btn-group button:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.btn-group button:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #b57edc;
 }
 
 @media screen and (min-width: 768px) {

@@ -81,6 +81,15 @@ export default {
     flex-direction: row;
   }
 
+  .comment-list {
+    overflow-y: auto;
+    height: 100vh;
+  }
+
+  .comment-list::-webkit-scrollbar {
+    display: none;
+  }
+
   .comment-input textarea {
     width: 100%;
     border: 1px solid #b57edc;
@@ -127,6 +136,8 @@ export default {
     box-sizing: border-box;
     z-index: 4;
     backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
   }
 
   .comment-show {
