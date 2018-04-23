@@ -6,8 +6,12 @@
       <button type="submit"><i class="material-icons">send</i></button>
     </form>
 
-    <ul>
-      <li v-for="comment in comments" v-bind:key="comment.id">
+    <ul class="comment-list">
+      <li v-for="comment in comments" v-bind:key="comment.id" class="comment">
+        <p class="comment-meta">
+          <i class="material-icons">location_on</i>
+          {{ comment.location }} at {{ comment.created_at }}
+        </p>
         {{ comment.content }}
       </li>
       <infinite-loading @infinite="infiniteHandler"></infinite-loading>
@@ -52,6 +56,25 @@ export default {
 </script>
 
 <style>
+  .comment {
+    list-style: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    background-color: #ddd;
+    padding: 5px;
+    margin-top: 5px;
+  }
+
+  .comment-meta {
+    font-size: 12px;
+    margin-bottom: 2px !important;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .comment-meta .material-icons {
+    font-size: 12px;
+  }
+
   .comment-input {
     display: flex;
     flex-direction: row;
@@ -65,6 +88,7 @@ export default {
     outline-width: thin;
     padding: 3px;
     box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.8);
   }
 
   .comment-input button {
@@ -79,4 +103,41 @@ export default {
   .comment-input button:hover {
     transform: scale(1.1);
   }
+
+  .comment-toggle {
+    bottom: 1em;
+    right: 1em;
+    position: absolute;
+    background: none;
+    color: #b57edc;
+    outline: #b57edc;
+    border: none;
+  }
+
+  .comments {
+    position: absolute;
+    right: -300px;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    transition: 0.38s ease-in-out;
+    padding: 0.5em;
+    box-sizing: border-box;
+    z-index: 4;
+    backdrop-filter: blur(5px);
+  }
+
+  .comment-show {
+    right: 0;
+  }
+  .comment-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+  }
+
 </style>
