@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Posts from '@/pages/Posts'
-import Post from '@/pages/Post'
-import Revision from '@/pages/Revision'
-import Revisions from '@/pages/Revisions'
+const Posts = () => import('@/pages/Posts')
+const Post = () => import('@/pages/Post')
+const Revision = () => import('@/pages/Revision')
+const Revisions = () => import('@/pages/Revisions')
 
 Vue.use(Router)
 
