@@ -4,8 +4,8 @@
       <button class="comment-toggle" @click="toggleComments"><i class="material-icons">mode_comment</i></button>
     </div>
     <header>
-      <h1>{{ this.post.title }}</h1>
-      <p class="post-meta">Last edit by:&nbsp;{{ this.post.last_edit_by }} at {{ this.post.updated_at }}, under {{ this.post.category }}</p>
+      <h1>{{ post.title }}</h1>
+      <p class="post-meta">Last edit by:&nbsp;{{ post.last_edit_by }} at {{ post.updated_at }}, under {{ post.category_name }}</p>
     </header>
     <section>
       <vue-markdown :source="post.content" :watches="['this.post.content']"></vue-markdown>
