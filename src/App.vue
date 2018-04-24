@@ -32,12 +32,25 @@
 
     <main v-bind:class=" { 'post-active': postActive } ">
       <button class="btn-close" @click="closePost()">Click to return</button>
-      <router-view />
+      <router-view class="router-view"/>
+      <footer><p>Powered by <a href="https://github.com/typistCMS">typistCMS</a></p></footer>
     </main>
+
   </div>
 </template>
 
 <style>
+.router-view {
+  flex: 1 0 auto;
+}
+
+footer {
+  text-align: center;
+  flex-shrink: 0;
+  padding: 3em;
+  font-size: 14px;
+}
+
 .btn-close {
   position: fixed;
   background: #b57edc;
@@ -80,6 +93,8 @@ nav h2 {
 main {
   height: 100vh;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 aside {
