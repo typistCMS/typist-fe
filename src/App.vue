@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav v-bind:class="{ 'expand-list': !postActive, 'post-active': postActive }" @click="$router.push('/')">
+    <nav v-bind:class="{ 'post-active': postActive }" @click="$router.push('/')">
       <select class="filter" v-model="categoryId" @change="changeCategory">
         <option value="" selected>All categories</option>
         <option :value="category.id" v-for="category in categories" :key="category.id">{{ category.name }}</option>
@@ -8,7 +8,7 @@
       </select>
     </nav>
 
-    <aside v-bind:class="{ 'expand-list': !postActive, 'post-active': postActive }">
+    <aside v-bind:class="{ 'post-active': postActive }">
       <section v-for="post in posts" class="post" v-bind:key="post.id">
         <router-link tag="section" :to="'/post/' + post.id" class="expand_content" v-if="post.expand_content">
           <p class="post-meta">
@@ -30,25 +30,17 @@
       <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading"></infinite-loading>
     </aside>
 
-    <main>
+    <div class="main">
       <button class="btn-close" @click="closePost()">Click to return</button>
       <router-view class="router-view"/>
-      <footer><p>Powered by <a href="https://github.com/typistCMS">typistCMS</a></p></footer>
-    </main>
+    </div>
 
   </div>
 </template>
 
 <style>
-.router-view {
-  flex: 1 0 auto;
-}
-
-footer {
-  text-align: center;
-  flex-shrink: 0;
-  padding: 3em;
-  font-size: 14px;
+blockquote {
+  border-left: 1px solid #b57edc !important;
 }
 
 .btn-close {
@@ -56,6 +48,7 @@ footer {
   background: #b57edc;
   height: 2em;
   border: 0;
+  top: 0;
   outline: none;
   font-size: 12px;
   text-align: center;
@@ -90,13 +83,6 @@ nav h2 {
   margin: 0;
 }
 
-main {
-  height: 100vh;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-}
-
 aside {
   margin-top: 3em;
   overflow-y: auto;
@@ -115,10 +101,6 @@ aside {
     background-color: #fff;
   }
 
-  main {
-    background-color: #fff;
-  }
-
   .post-active {
     display: none;
   }
@@ -131,6 +113,8 @@ aside {
 
   aside {
     width: 300px;
+    position: fixed;
+    background: #fff;
   }
 
   nav {
@@ -138,25 +122,23 @@ aside {
     width: 300px;
   }
 
-  main {
+  .main {
     border-left: 1px solid #ccc;
     flex: 1;
+    margin-left: 300px;
+    box-sizing: content-box;
+    min-height: 100vh;
   }
 
   .btn-close {
     display: none;
   }
 
-  .expand-list {
-    width: 40vw;
-    box-sizing: border;
-  }
-
 }
 
   .post {
     border-bottom: 1px solid #ccc;
-    padding: 0.1em 2%
+    padding: 0.1em 2%;
   }
 
   .post .title {
@@ -175,12 +157,6 @@ aside {
     font-size: 70%;
     border-radius: 1em;
     line-height: 1em;
-  }
-
-  body {
-    height: 100%;
-    overflow: hidden;
-    position: relative;
   }
 
   .material-icons {

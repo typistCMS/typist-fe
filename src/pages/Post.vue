@@ -85,6 +85,7 @@ article {
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1em;
 }
 
 @media screen and (max-width: 768px) {
@@ -146,5 +147,4 @@ article {
   }
 
 }
-
 </style>

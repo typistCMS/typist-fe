@@ -125,18 +125,17 @@ export default {
   }
 
   .comments {
-    position: absolute;
+    position: fixed;
     right: -300px;
     top: 0;
     width: 300px;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.7);
+    height: 100vh;
     transition: 0.38s ease-in-out;
     padding: 0.5em;
     box-sizing: border-box;
     z-index: 4;
-    backdrop-filter: blur(10px);
     display: flex;
+    background: #fff;
     flex-direction: column;
   }
 
