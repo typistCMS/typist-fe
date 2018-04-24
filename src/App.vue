@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav v-bind:class="{ 'expand-list': !postActive }" @click="$router.push('/')">
+    <nav v-bind:class="{ 'expand-list': !postActive, 'post-active': postActive }" @click="$router.push('/')">
       <select class="filter" v-model="categoryId" @change="changeCategory">
         <option value="" selected>All categories</option>
         <option :value="category.id" v-for="category in categories" :key="category.id">{{ category.name }}</option>
@@ -8,7 +8,7 @@
       </select>
     </nav>
 
-    <aside v-bind:class="{ 'expand-list': !postActive }">
+    <aside v-bind:class="{ 'expand-list': !postActive, 'post-active': postActive }">
       <section v-for="post in posts" class="post" v-bind:key="post.id">
         <router-link tag="section" :to="'/post/' + post.id" class="expand_content" v-if="post.expand_content">
           <p class="post-meta">
@@ -30,7 +30,7 @@
       <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading"></infinite-loading>
     </aside>
 
-    <main v-bind:class=" { 'post-active': postActive } ">
+    <main>
       <button class="btn-close" @click="closePost()">Click to return</button>
       <router-view class="router-view"/>
       <footer><p>Powered by <a href="https://github.com/typistCMS">typistCMS</a></p></footer>
@@ -116,16 +116,11 @@ aside {
   }
 
   main {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 0px;
-    left: 0px;
     background-color: #fff;
   }
 
   .post-active {
-    z-index: 3;
+    display: none;
   }
 }
 
