@@ -14,7 +14,7 @@
         </p>
         {{ comment.content }}
       </li>
-      <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+      <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading"></infinite-loading>
     </ul>
   </section>
 </template>
@@ -29,6 +29,15 @@ export default {
       content: null,
       page: 1,
       comments: []
+    }
+  },
+  watch: {
+    postId (val, nVal) {
+      this.comments = []
+      this.page = 1
+      this.$nextTick(() => {
+        this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+      })
     }
   },
   methods: {
