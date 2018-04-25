@@ -12,7 +12,7 @@
       <section v-for="post in posts" class="post" v-bind:key="post.id">
         <router-link tag="section" :to="'/post/' + post.id" class="expand_content" v-if="post.expand_content">
           <p class="post-meta">
-            {{ post.last_edit_by }} - {{ post.updated_at | localTime }}
+            <router-link :to="'/user/' + post.user_id">{{ post.last_edit_by }}</router-link> - {{ post.updated_at | localTime }}
           </p>
           <vue-markdown v-if="post.expand_content" :source="post.content"></vue-markdown>
         </router-link>
@@ -20,8 +20,7 @@
         <header v-else>
           <router-link tag="h2" :to="'/post/' + post.id">{{ post.title }}</router-link>
           <p class="post-meta">
-            Last edit by:&nbsp;<router-link :to="'/user/' + post.user_id">{{ post.last_edit_by }}</router-link><br>
-            under&nbsp;
+            <router-link :to="'/user/' + post.user_id">{{ post.last_edit_by }}</router-link> - {{ post.updated_at | localTime }}</br>
             <span class="category" @click="assignCategory(post.category_id)"> {{ post.category_name }} </span>
           </p>
         </header>
