@@ -20,9 +20,9 @@
         <header v-else>
           <router-link tag="h2" :to="'/post/' + post.id">{{ post.title }}</router-link>
           <p class="post-meta">
-            Last edit by:&nbsp;<router-link to="/user/">{{ post.last_edit_by }}</router-link><br>
+            Last edit by:&nbsp;<router-link :to="'/user/' + post.user_id">{{ post.last_edit_by }}</router-link><br>
             under&nbsp;
-            <span class="category"> {{ post.category_name }} </span>
+            <span class="category" @click="assignCategory(post.category_id)"> {{ post.category_name }} </span>
           </p>
         </header>
       </section>
@@ -128,6 +128,7 @@ aside {
     margin-left: 300px;
     box-sizing: content-box;
     min-height: 100vh;
+    padding: 0 8%;
   }
 
   .btn-close {
@@ -232,6 +233,10 @@ export default {
     },
     closePost () {
       this.$router.push('/')
+    },
+    assignCategory (id) {
+      this.categoryId = id
+      this.changeCategory()
     },
     changeCategory () {
       this.posts = []

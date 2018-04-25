@@ -155,11 +155,4 @@ article {
 .btn-group button:hover {
     background-color: #b57edc;
 }
-
-@media screen and (min-width: 768px) {
-  article {
-    padding: 0 5%;
-  }
-
-}
 </style>

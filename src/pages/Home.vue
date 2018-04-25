@@ -1,12 +1,14 @@
 <template>
-  <main class="home">
-    <h2>Pinned Post</h2>
-    <h2>Recent Update</h2>
+  <main class="home typo">
+    <h1>Typist</h1>
   </main>
 </template>
 
 <style>
-main.home {
-  margin: 1em;
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 </style>

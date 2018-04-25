@@ -4,6 +4,7 @@ const Post = () => import('@/pages/Post')
 const Content = () => import('@/pages/Content')
 const Revisions = () => import('@/pages/Revisions')
 const Home = () => import('@/pages/Home')
+const User = () => import('@/pages/User')
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ export default new Router({
           name: 'Revision'
         }
       ]
+    },
+    {
+      path: '/user/:id',
+      component: User,
+      name: 'User'
     }
   ]
 })
