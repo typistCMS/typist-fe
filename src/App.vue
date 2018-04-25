@@ -200,7 +200,7 @@ export default {
   },
   computed: {
     postActive () {
-      return this.$route.name === 'Post' || this.$route.name === 'Revisions'
+      return this.$route.path !== '/'
     }
   },
   watch: {

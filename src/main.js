@@ -31,6 +31,10 @@ Vue.filter('localTime', function (value) {
   if (diff <= 777600) { return '1 week ago' }
   return 'on ' + systemDate.toLocaleString()
 })
+
+Vue.filter('localTimeDetail', function (value) {
+  return new Date(value + ' UTC').toLocaleString()
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

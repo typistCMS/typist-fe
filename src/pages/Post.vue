@@ -14,14 +14,17 @@
             <i class="material-icons">label</i>{{ post.category_name }}
           </p>
           <div class="btn-group">
-            <router-link tag="button" to="revisions" append><i class="material-icons">archive</i></router-link>
+            <button @click="toggleRevisions">
+              <i class="material-icons" v-if="this.$route.name === 'Revisions'">chrome_reader_mode</i>
+              <i class="material-icons" v-else>archive</i>
+            </button>
             <button><i class="material-icons" @click="toggleComments">chat_bubble</i></button>
           </div>
         </div>
       </header>
 
       <section>
-        <vue-markdown :source="post.content" :watches="['this.post.content']"></vue-markdown>
+        <router-view />
       </section>
 
       <div :class="{ 'comment-mask': commentsOn }" @click="toggleComments"></div>
@@ -32,10 +35,9 @@
 
 <script>
 import Comments from '@/components/Comments.vue'
-import VueMarkdown from 'vue-markdown'
 export default {
   components: {
-    VueMarkdown, Comments
+    Comments
   },
   data () {
     return {
@@ -44,9 +46,13 @@ export default {
     }
   },
   beforeRouteUpdate (to, from, next) {
-    this.getPost(to.params.id)
-    console.log('Post route update')
-    next()
+    if ((from.name === 'Content' && to.name === 'Revisions') ||
+        (from.name === 'Revision' && to.name === 'Revisions')) {
+      next()
+    } else {
+      this.getPost(to.params.id)
+      next()
+    }
   },
   created () {
     this.$nextTick(function () {
@@ -57,6 +63,15 @@ export default {
     window.Prism.highlightAll()
   },
   methods: {
+    toggleRevisions () {
+      let baseURL = '/post/' + this.post.id
+      let routeName = this.$route.name
+      if (routeName === 'Content' || routeName === 'Revision') {
+        this.$router.push(baseURL + '/revisions')
+      } else {
+        this.$router.push(baseURL)
+      }
+    },
     getPost (postId) {
       let loader = this.$loading.show()
       this.$http.get('/post/' + postId).then(({data}) => {
