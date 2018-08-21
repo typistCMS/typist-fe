@@ -6,16 +6,21 @@
         <router-view class="router-view"/>
       </keep-alive>
     </main>
+    <tp-footer />
   </div>
 </template>
 
 <style>
 #app {
-  margin-top: 60px;
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 main {
   display: flex;
+  flex: auto;
   padding: 8px;
 }
 
@@ -30,14 +35,15 @@ blockquote {
   }
 
   #app {
-    margin-top: 48px;
+    padding-top: 48px;
   }
 }
 </style>
 
 <script>
 import Nav from '@/components/Nav'
+import Footer from '@/components/Footer'
 export default {
-  components: { 'tp-nav': Nav }
+  components: { 'tp-nav': Nav, 'tp-footer': Footer }
 }
 </script>
