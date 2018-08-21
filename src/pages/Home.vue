@@ -1,14 +1,26 @@
 <template>
-  <main class="home typo">
-    <h1>Typist</h1>
-  </main>
+  <div class="home">
+    <h1>Most Recent</h1>
+    <post-list></post-list>
+  </div>
 </template>
 
-<style>
+<script>
+import VueMarkdown from 'vue-markdown'
+import Nav from '@/components/Nav'
+import PostList from '@/components/PostList'
+export default {
+  components: { VueMarkdown, 'tp-nav': Nav, 'post-list': PostList }
+}
+</script>
+
+<style scoped>
 .home {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  width: 100%;
+}
+
+h1 {
+  margin: 0em;
+  font-size: 1.5em;
 }
 </style>

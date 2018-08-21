@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 const Post = () => import('@/pages/Post')
+const Category = () => import('@/pages/Category')
 const Content = () => import('@/pages/Content')
 const Revisions = () => import('@/pages/Revisions')
 const Home = () => import('@/pages/Home')
@@ -15,6 +16,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/category/:id',
+      name: 'Category',
+      component: Category
     },
     {
       path: '/post/:id',
