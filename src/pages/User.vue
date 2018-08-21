@@ -1,7 +1,7 @@
 <template>
   <main class="typo">
     <header>
-      <h1> {{ name }} </h1>
+      <h1> User: {{ name }} </h1>
       <p> {{ description }} </p>
     </header>
   </main>
@@ -28,3 +28,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+h1 {
+  margin-top: 0;
+}
+
+.typo {
+  padding: 0;
+}
+</style>

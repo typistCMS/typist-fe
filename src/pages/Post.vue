@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%;">
+  <div class="wrapper" :class="{ 'on-comment-show': commentsOn }">
     <article class="typo">
       <div class="toolbar">
         <button class="comment-toggle" @click="toggleComments"><i class="material-icons">mode_comment</i></button>
@@ -63,6 +63,11 @@ export default {
       next()
     }
   },
+  metaInfo () {
+    return {
+      title: (this.post ? this.post.title : 'Loading...') + ' - Stanley\'s Blog'
+    }
+  },
   created () {
     this.$nextTick(function () {
       this.getPost(this.$route.params.id)
@@ -119,9 +124,14 @@ export default {
 </script>
 
 <style scoped>
+.wrapper {
+  width: 100%;
+}
+
 .typo h1 {
   margin-top: 0;
 }
+
 .post-toolbar {
   background: #f3eaf9;
   color: #b57edc;
@@ -166,7 +176,8 @@ export default {
   right: 0;
   left: 0;
   transition: all 0.1s ease-in;
-  border-radius: 0;
+  border-radius: 0px;
+  box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
 }
 
 .post-toolbar-top-show {
@@ -240,6 +251,14 @@ export default {
 
   .post-toolbar-top {
     top: -48px;
+  }
+
+  .on-comment-show {
+    padding-right: 300px;
+  }
+
+  .wrapper {
+    transition: all 0.2s ease-in;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <main class="revisions">
+  <div class="revisions">
     <table>
       <thead>
         <td>#</td>
@@ -18,7 +18,7 @@
         </router-link>
       </tbody>
     </table>
-  </main>
+  </div>
 </template>
 
 <script>

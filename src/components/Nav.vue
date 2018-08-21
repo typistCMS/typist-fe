@@ -63,6 +63,11 @@ nav {
   padding: 2px 8px;
   background: #fff;
   transition: all 0.2s ease-in;
+  box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+}
+
+.category-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .nav-left {
@@ -83,13 +88,17 @@ ul {
 }
 
 li {
-  margin-right: 3px;
+  margin-left: 4px;
   padding: 0 5px;
   box-sizing: border-box;
   background: #f3eaf9;
   border-radius: 5px;
   font-size: 12px;
   white-space: nowrap;
+}
+
+li:first-child {
+  margin-left: 0;
 }
 
 .category-wrapper {
@@ -115,7 +124,7 @@ h1 {
     height: 48px;
     top: -54px;
     display: flex;
-    box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+    padding: 0 16px;
   }
 
   li {

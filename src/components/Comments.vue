@@ -136,28 +136,37 @@ export default {
   .comments {
     position: fixed;
     right: -300px;
-    top: 0;
+    top: 0px;
     width: 300px;
     height: 100vh;
     transition: 0.38s ease-in-out;
     padding: 0.5em;
     box-sizing: border-box;
-    z-index: 4;
+    z-index: 8;
     display: flex;
     background: #fff;
     flex-direction: column;
+    box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
   }
 
   .comment-show {
     right: 0;
   }
+
   .comment-mask {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 3;
+    z-index: 2;
   }
 
+  @media screen and (min-width: 768px)
+  {
+    .comments {
+      top: 48px;
+      z-index: 3;
+    }
+  }
 </style>

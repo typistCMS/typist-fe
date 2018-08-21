@@ -6,6 +6,9 @@ import router from './router'
 import axios from 'axios'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.min.css'
+import VueMeta from 'vue-meta'
+
+Vue.use(VueMeta)
 Vue.use(Loading)
 Vue.config.productionTip = false
 
