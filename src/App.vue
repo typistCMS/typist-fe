@@ -19,6 +19,10 @@ main {
   padding: 8px;
 }
 
+blockquote {
+  border-left: 1px solid #b57edc;
+}
+
 @media screen and (min-width: 768px)
 {
   main {
