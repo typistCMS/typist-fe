@@ -86,6 +86,10 @@ export default {
   width: 100%;
 }
 
+img {
+  max-width: 100%;
+}
+
 section {
   padding: 8px 0;
   border-bottom: 1px solid rgba(0,0,0,0.14);
