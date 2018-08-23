@@ -1,8 +1,12 @@
-# typist-fe
+# TypistFE
 
 > Front-end of typist api
 
+See Live demo [Stanley's Blog](https://stanley.elfstack.com).
+
 ## Build Setup
+
+Don't forget to change config in `src/main.js`
 
 ``` bash
 # install dependencies
