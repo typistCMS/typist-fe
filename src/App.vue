@@ -35,6 +35,7 @@ blockquote {
   }
 
   #app {
+    background: #fcfafe;
     padding-top: 48px;
   }
 }

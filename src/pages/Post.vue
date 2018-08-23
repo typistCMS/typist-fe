@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper" :class="{ 'on-comment-show': commentsOn }">
+    <div class="wrapper-container">
     <article class="typo">
       <div class="toolbar">
         <button class="comment-toggle" @click="toggleComments"><i class="material-icons">mode_comment</i></button>
@@ -34,6 +35,7 @@
       <div :class="{ 'comment-mask': commentsOn }" @click="toggleComments"></div>
     </article>
     <comments v-if="post.id" :postId="post.id" :class="{ 'comment-show': commentsOn }"></comments>
+    </div>
   </div>
 </template>
 
@@ -262,6 +264,15 @@ export default {
 
   .wrapper {
     transition: all 0.2s ease-in;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .wrapper-container {
+    padding: 16px;
+    width: 768px;
+    background: #fff;
   }
 }
 </style>

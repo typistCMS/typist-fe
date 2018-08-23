@@ -38,10 +38,10 @@ h1 {
   }
 
   section {
-    background: #fcfafe;
+    background: #fff;
     padding: 8px 16px;
     width: 768px;
-    border-radius: 5px;
+    border-radius: 10px;
   }
 
 }

@@ -1,5 +1,7 @@
 <template>
-  <post-list class="post-list" :key="id" :params="'?category=' + this.id"></post-list>
+  <div class="category">
+    <post-list class="post-list" :key="id" :params="'?category=' + this.id"></post-list>
+  </div>
 </template>
 
 <script>
@@ -28,3 +30,22 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+@media screen and (min-width: 768px)
+{
+  .category {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .post-list {
+    background: #fff;
+    padding: 8px 16px;
+    width: 768px;
+    border-radius: 5px;
+  }
+
+}
+</style>

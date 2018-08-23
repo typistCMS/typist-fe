@@ -132,10 +132,8 @@ h1 {
     display: flex;
     align-items: center;
     font-size: 1em;
-  }
-
-  .nav-right {
-    padding-top: 0;
+    text-transform: uppercase;
+    font-stretch: condensed;
   }
 }
 </style>

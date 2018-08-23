@@ -68,10 +68,10 @@ export default {
         if (data.posts.length) {
           this.posts = this.posts.concat(data.posts)
           this.page += 1
-          $state.loaded()
           if (data.count === this.posts.length) {
             $state.complete()
           }
+          $state.loaded()
         } else {
           $state.complete()
         }

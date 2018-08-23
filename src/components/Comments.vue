@@ -108,8 +108,9 @@ export default {
     border-radius: 2px;
     outline: #b57edc;
     outline-width: thin;
-    padding: 3px;
+    padding: 8px;
     box-sizing: border-box;
+    font-size: 14px;
     background: rgba(255, 255, 255, 0.8);
   }
 
