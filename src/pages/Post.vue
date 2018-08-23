@@ -12,7 +12,7 @@
             <div class="post-meta">
               <span v-if="toolbarTop" class="title">{{ post.title }}</span>
               <span><i class="material-icons">account_circle</i>{{ post.last_edit_by }}</span>
-              <span><i class="material-icons">access_time</i>{{ post.updated_at | localTime }}, last modify: {{ post.updated_at | localTime }}</span>
+              <span><i class="material-icons">access_time</i>{{ post.created_at | localTime }}, last modify: {{ post.updated_at | localTime }}</span>
               <span><i class="material-icons">label</i>{{ post.category_name }}</span>
             </div>
           </div>
