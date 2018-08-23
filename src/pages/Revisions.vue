@@ -9,6 +9,14 @@
       <tbody>
         <router-link
           tag="tr"
+          :to="'/post/' + $route.params.id + '/revision/' + currentActiveRevision.id"
+        >
+          <td> {{ currentActiveRevision.id }} </td>
+          <td> {{ currentActiveRevision.user_name }} </td>
+          <td> {{ currentActiveRevision.created_at | localTimeDetail }} </td>
+        </router-link>
+        <router-link
+          tag="tr"
           :to="'/post/' + $route.params.id + '/revision/' + revision.id" v-for="revision in revisions"
           v-bind:key="revision.id"
         >
@@ -25,6 +33,7 @@
 export default {
   data () {
     return {
+      currentActiveRevision: {},
       revisions: []
     }
   },
@@ -34,7 +43,8 @@ export default {
   methods: {
     retrieveRevisions () {
       this.$http.get('/post/' + this.$route.params.id + '/revisions').then(({data}) => {
-        this.revisions = data
+        this.revisions = data.revisions
+        this.currentActiveRevision = data.current_active_revision
       }).catch((error) => {
         if (error.response.status === 404) {
           this.$router.replace('/404')
