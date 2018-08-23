@@ -75,6 +75,10 @@ export default {
         } else {
           $state.complete()
         }
+      }).catch((error) => {
+        if (error.response.status === 404) {
+          this.$router.replace('/404')
+        }
       })
     }
   }

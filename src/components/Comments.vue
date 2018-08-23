@@ -53,6 +53,9 @@ export default {
       this.$http.get('comments/' + this.page + '/post/' + this.postId).then(({data}) => {
         if (data.comments.length) {
           this.comments = this.comments.concat(data.comments)
+          if (data.count === this.comments.length) {
+            $state.complete()
+          }
           ++this.page
           $state.loaded()
         } else {

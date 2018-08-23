@@ -14,6 +14,10 @@ export default {
         this.$parent.post.content = data.content
         this.$parent.post.last_edit_by = data.created_by
         this.$parent.post.created_at = data.created_at
+      }).catch((error) => {
+        if (error.response.status === 404) {
+          this.$router.replace('/404')
+        }
       })
     }
   }

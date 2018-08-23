@@ -12,7 +12,7 @@
             <div class="post-meta">
               <span v-if="toolbarTop" class="title">{{ post.title }}</span>
               <span><i class="material-icons">account_circle</i>{{ post.last_edit_by }}</span>
-              <span><i class="material-icons">access_time</i>{{ post.updated_at | localTime }}</span>
+              <span><i class="material-icons">access_time</i>{{ post.updated_at | localTime }}, last modify: {{ post.updated_at | localTime }}</span>
               <span><i class="material-icons">label</i>{{ post.category_name }}</span>
             </div>
           </div>
@@ -20,7 +20,7 @@
           <div class="btn-group">
             <button @click="toggleRevisions">
               <i class="material-icons" v-if="this.$route.name === 'Revisions'">chrome_reader_mode</i>
-              <i class="material-icons" v-else>archive</i>
+              <i class="material-icons" v-else>history</i>
             </button>
             <button><i class="material-icons" @click="toggleComments">chat_bubble</i></button>
           </div>
@@ -97,7 +97,10 @@ export default {
         this.post = data
         loader.hide()
       }).catch((error) => {
-        console.log(error)
+        loader.hide()
+        if (error.response.status === 404) {
+          this.$router.replace('/404')
+        }
       })
     },
     toggleComments () {

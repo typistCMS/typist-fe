@@ -35,6 +35,10 @@ export default {
     retrieveRevisions () {
       this.$http.get('/post/' + this.$route.params.id + '/revisions').then(({data}) => {
         this.revisions = data
+      }).catch((error) => {
+        if (error.response.status === 404) {
+          this.$router.replace('/404')
+        }
       })
     }
   }
