@@ -32,12 +32,15 @@ export default {
 </script>
 
 <style scoped>
+.category {
+  width: 100%;
+}
+
 @media screen and (min-width: 768px)
 {
   .category {
     display: flex;
     justify-content: center;
-    width: 100%;
   }
 
   .post-list {
@@ -46,6 +49,5 @@ export default {
     width: 768px;
     border-radius: 5px;
   }
-
 }
 </style>
